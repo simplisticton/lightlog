@@ -5,12 +5,13 @@ use JSON;
 use Data::Dumper;
 use strict;
 
+my $BRIDGE_IP = ""; # put the IP of your Hue bridge here
 my $API_KEY = ""; # put your Hue API key here
 
 $| = 1;
 
 while(1) {
-	my $r = HTTP::Tiny->new->get("http://huebridge.local/api/$API_KEY/lights"); 
+	my $r = HTTP::Tiny->new->get("http://$BRIDGE_IP/api/$API_KEY/lights"); 
 
 	my $lights = decode_json $r->{content};
 	my $timestamp = time();
